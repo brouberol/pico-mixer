@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pico-mixer"
+version = "0.1.0"
+description = "A small sound mixing app driven by a Pimoroni Keypad"
+authors = ["Balthazar Rouberol <br@imap.cc>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "pico_mixer"}]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pygame = "^2.1.2"
+pyserial = "^3.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
