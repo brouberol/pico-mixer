@@ -53,6 +53,7 @@ def main():
     start_time = time.monotonic()
     activated_keys = {}
     keys_being_pressed = {}
+    paused = False
     keypad = RGBKeypad()
 
     initialize_keys(keypad)
@@ -132,7 +133,11 @@ def main():
                 state = "on"
 
             if key_index == PAUSE_KEY_INDEX:
-                state = "pause"
+                if paused:
+                    state = "unpause"
+                else:
+                    state = "pause"
+                paused = not paused
 
             message = '{"key": "%s", "state": "%s"}\n' % (str(key_index), state)
             print(message)  # That sends the message over the usb port
