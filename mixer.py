@@ -16,7 +16,6 @@ from serial import Serial
 from serial.tools.list_ports import grep as list_ports
 
 
-PAUSE_KEY = "15"
 WINDOW_SIZE_X = 0
 WINDOW_SIZE_Y = 0
 BARS_START_X = 3
@@ -96,24 +95,23 @@ def update_sound_bars(stdscr):
 def process_message(message):
     global paused
 
-    key_name = message["key"]
+    key_name, state = message["key"], message["state"]
 
-    if key_name == PAUSE_KEY:
-        if not paused:
-            paused = True
-            pygame.mixer.pause()
-        else:
-            paused = False
-            pygame.mixer.unpause()
-
-    elif key_name in config:
+    if key_name in config:
         track = tracks[key_name]
-        if message["state"] == "on":
+        if state == "on":
             track.play()
-        elif message["state"] == "off":
+        elif state == "off":
             track.stop()
-        elif message["state"] in ("vol_up", "vol_down"):
-            track.change_volume(by=10 if message["state"] == "vol_up" else -10)
+        elif state in ("vol_up", "vol_down"):
+            track.change_volume(by=10 if state == "vol_up" else -10)
+        elif state == "pause":
+            if not paused:
+                paused = True
+                pygame.mixer.pause()
+            else:
+                paused = False
+                pygame.mixer.unpause()
 
 
 def init_window(stdscr):

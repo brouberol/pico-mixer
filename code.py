@@ -131,6 +131,9 @@ def main():
                 key.brightness = ACTIVATED_KEY_BRIGHTNESS
                 state = "on"
 
+            if key_index == PAUSE_KEY_INDEX:
+                state = "pause"
+
             message = '{"key": "%s", "state": "%s"}\n' % (str(key_index), state)
             print(message)  # That sends the message over the usb port
 
