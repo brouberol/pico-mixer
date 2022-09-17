@@ -6,7 +6,8 @@ This project was born after thinking that I'd really like to have something like
 
 What I wanted was a way to start, stop, pause, resume multiple individual soundtracks, while being able to adjust their volume, to create an immersive sound ambiance for the table.
 
-I used a [Pimoroni Keypad](https://shop.pimoroni.com/products/pico-rgb-keypad-base?variant=32369517166675), as well as a [Raspberry Pi Pico](https://learn.pimoroni.com/article/getting-started-with-pico), for a total budget of roughly 30 euro.
+I used a [Pimoroni Keypad](https://shop.pimoroni.com/products/pico-rgb-keypad-base?variant=32369517166675), as well as a [Raspberry Pi Pico](https://learn.pimoroni.com/article/getting-started-with-pico), for a total budget of roughly 30 euro. The black casing was 3D-printed using the `rgb_keypad_-_bottom.stl` file from this [Thingiverse model](https://www.thingiverse.com/thing:4883873/files).
+
 
 ### Setup
 
@@ -17,8 +18,6 @@ The `code.py` script runs on a Raspberry Pi Pico, running [CircuitPython](https:
 When a key (or a combination of Volume up/down + track key) is pressed, a JSON-formatted message is sent over USB. This message is read by the `mixer.py` script, a curses app displaying each individual track, associated with their volume bar.
 
 <img width="972" alt="Screen Shot 2022-09-17 at 15 15 47" src="https://user-images.githubusercontent.com/480131/190859066-77211be5-a692-450b-88c9-b99139f94216.png">
-
-The black casing was 3D-printed using the `rgb_keypad_-_bottom.stl` file from this [Thingiverse model](https://www.thingiverse.com/thing:4883873/files).
 
  
 ### Limitations
