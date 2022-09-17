@@ -18,6 +18,8 @@ When a key (or a combination of Volume up/down + track key) is pressed, a JSON-f
 
 <img width="972" alt="Screen Shot 2022-09-17 at 15 15 47" src="https://user-images.githubusercontent.com/480131/190859066-77211be5-a692-450b-88c9-b99139f94216.png">
 
+The black casing was 3D-printed using the `rgb_keypad_-_bottom.stl` file from this [Thingiverse model](https://www.thingiverse.com/thing:4883873/files).
+
  
 ### Limitations
 
