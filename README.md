@@ -4,7 +4,7 @@
 
 This project was born after thinking that I'd really like to have something like a [Launchpad](https://novationmusic.com/en/launch/launchpad-x) to control and mix sound ambiances while DMing a Dungeons and Dragons game.
 
-What I wanted was a way to start, stop, pause, resume multiple individual soundtracks, while being able to adjust their volume, to create an immersive sound ambiance for the table.
+What I wanted was a way to create an immersive atmosphere at the table, by being able to start, stop, pause and resume multiple individual soundtracks, adjust their volume, and flash pretty colors.
 
 I used a [Pimoroni Keypad](https://shop.pimoroni.com/products/pico-rgb-keypad-base?variant=32369517166675), as well as a [Raspberry Pi Pico](https://learn.pimoroni.com/article/getting-started-with-pico), for a total budget of roughly 30 euro. The black casing was 3D-printed using the `rgb_keypad_-_bottom.stl` file from this [Thingiverse model](https://www.thingiverse.com/thing:4883873/files).
 
