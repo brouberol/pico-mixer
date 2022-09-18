@@ -6,5 +6,8 @@ pico-sync:  ## Sync the CircuitPython code onto the pico
 mixer:  ## Start the sound mixer
 	@poetry run python pico_mixer/mixer.py
 
+webmixer:  ## Start the web-based sound mixer
+	@cd pico_mixer_web && poetry run python server.py
+
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

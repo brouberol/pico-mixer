@@ -4,41 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Unique page title - My Site</title>
-
-    <link rel="stylesheet" href="/assets/css/styles.css">
-
-    <meta name="description" content="Page description">
-    <meta property="og:title" content="Unique page title - My Site">
-    <meta property="og:description" content="Page description">
-    <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
-    <meta property="og:image:alt" content="Image description">
-    <meta property="og:locale" content="en_GB">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:url" content="https://www.mywebsite.com/page">
-    <link rel="canonical" href="https://www.mywebsite.com/page">
-
-    <link rel="icon" href="/favicon.ico">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/my.webmanifest">
-    <meta name="theme-color" content="#FF00FF">
+    <title>Pico mixer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="p-2">
     <!-- Content -->
-    <h1>Pico mixer</h1>
-    <div id="audioTracksContainer">
-    <ul>
-    {% for key, track in tracks.items() %}
-        <li class=track>
-            <span>[{{ key }}] {{ track }}</span>
-            <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track.replace("sounds/", "") }}" crossorigin="*"></audio>
-        </li>
-    {% endfor %}
-    </ul>
+    <h1 class="text-center mb-5">Pico mixer</h1>
+    <div class="container">
+        {% for key, track in tracks.items() %}
+        <div class="mb-3">
+            <div class="track mb-2">
+                <span><kbd>{{ key }}</kbd> {{ track.replace("sounds/", "") }}</span>
+                <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track.replace("sounds/", "" ) }}"
+                    crossorigin="*"></audio>
+            </div>
+            <div class="progress">
+                <div id="progress_track_{{ key }}" class="progress-bar bg-secondary" style="width: 100%">
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
     </div>
 
 

@@ -1,4 +1,5 @@
-import sys
+from gettext import find
+import time
 import json
 from pathlib import Path
 
@@ -16,6 +17,13 @@ app = Flask(
 )
 sock = Sock(app)
 
+def find_usb_device():
+    usb_ports = list(list_ports(r"^/dev/cu\.usbmodem.*$"))
+    if not usb_ports:
+        print("No USB-plugged keypad was found")
+        return
+    return Serial(usb_ports[0].device)
+
 
 @app.get("/")
 def index():
@@ -25,8 +33,10 @@ def index():
 
 @sock.route("/key_events")
 def stream_key_events(ws):
+    while not (usb_device := find_usb_device()):
+        time.sleep(1)
     while True:
-        line = app.usb_device.readline().strip()
+        line = usb_device.readline().strip()
         line = line.decode("utf-8")
         if not line.startswith("{"):
             continue
@@ -39,10 +49,4 @@ def stream_key_events(ws):
 
 
 if __name__ == "__main__":
-    usb_ports = list(list_ports(r"^/dev/cu\.usbmodem.*$"))
-    if not usb_ports:
-        print("No USB-plugged keypad was found")
-        sys.exit(1)
-
-    app.usb_device = Serial(usb_ports[0].device)
     app.run(port=8000)
