@@ -1,10 +1,9 @@
-from gettext import find
 import time
 import json
-from pathlib import Path
 
 import serial.serialutil
 
+from pathlib import Path
 from serial import Serial
 from serial.tools.list_ports import grep as list_ports
 
