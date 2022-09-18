@@ -3,8 +3,12 @@ const tracksPlaying = {};
 
 ws.addEventListener('message', event => {
   const keyEvent = JSON.parse(event.data);
-
-  if (keyEvent.state === "pause") {
+  const usbStatus = document.getElementById("usb_status");
+  if (keyEvent.state === "usb_disconnected") {
+    usbStatus.textContent = "🚫";
+  } else if (keyEvent.state === "usb_connected") {
+    usbStatus.textContent = "✅";
+  } else if (keyEvent.state === "pause") {
     Object.entries(tracksPlaying).forEach(([key, audioElement]) => {
       audioElement.pause();
       const trackProgressBar = document.getElementById(`progress_track_${key}`);

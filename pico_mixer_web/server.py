@@ -3,6 +3,8 @@ import time
 import json
 from pathlib import Path
 
+import serial.serialutil
+
 from serial import Serial
 from serial.tools.list_ports import grep as list_ports
 
@@ -20,7 +22,6 @@ sock = Sock(app)
 def find_usb_device():
     usb_ports = list(list_ports(r"^/dev/cu\.usbmodem.*$"))
     if not usb_ports:
-        print("No USB-plugged keypad was found")
         return
     return Serial(usb_ports[0].device)
 
@@ -33,19 +34,32 @@ def index():
 
 @sock.route("/key_events")
 def stream_key_events(ws):
-    while not (usb_device := find_usb_device()):
-        time.sleep(1)
+    connected = False
+    ws.send('{"state": "usb_disconnected"}')
+
+
     while True:
-        line = usb_device.readline().strip()
-        line = line.decode("utf-8")
-        if not line.startswith("{"):
+        if not (usb_device := find_usb_device()):
+            time.sleep(1)
             continue
+        if not connected:
+            ws.send('{"state": "usb_connected"}')
+            connected = True
         try:
-            json.loads(line)
-        except ValueError:
-            continue
-        else:
-            ws.send(line)
+            line = usb_device.readline().strip()
+            line = line.decode("utf-8")
+            if not line.startswith("{"):
+                continue
+            try:
+                json.loads(line)
+            except ValueError:
+                continue
+            else:
+                ws.send(line)
+        except serial.serialutil.SerialException:
+           ws.send('{"state": "usb_disconnected"}')
+           connected = False
+           time.sleep(1)
 
 
 if __name__ == "__main__":
