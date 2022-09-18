@@ -36,9 +36,10 @@ I also implemented a slightly more complex web application that fixes the previo
 - a webpage in charge of displaying the soundbars and active tracks as well as actually playing the audio tracks 
 - a Flask webserver receiving the messages over USB and serving them to the webpage over a websocket, as well as serving the audio track files to the webpage
 
-<img width="1116" alt="Screenshot 2022-09-18 at 16 59 36" src="https://user-images.githubusercontent.com/480131/190913656-5c0bb6a8-f8a9-460f-a5f7-cd65b29525fe.png">
+<img width="100%" alt="Screenshot 2022-09-18 at 17 06 35" src="https://user-images.githubusercontent.com/480131/190913995-a27c2385-ea1d-491a-8cc8-84a14d738a49.png">
 
 
 As the browser is really good at streaming `<audio>` elements, the app can start immediately without having to load all audio files in memory.
 
 <img width="100%" alt="Screenshot 2022-09-18 at 16 46 18" src="https://user-images.githubusercontent.com/480131/190913335-89fb520a-95c0-4723-bfc3-f301a472d06f.png">
+
