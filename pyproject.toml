@@ -15,6 +15,9 @@ Flask = "^2.2.2"
 flask-sock = "^0.5.2"
 
 
+[tool.poetry.group.dev.dependencies]
+black = "^22.8.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
