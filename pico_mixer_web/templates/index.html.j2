@@ -23,8 +23,7 @@
         <div class="mb-3">
             <div class="track mb-2">
                 <span><kbd>{{ key }}</kbd> {{ track.replace("sounds/", "") }}</span>
-                <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track.replace("sounds/", "" ) }}"
-                    crossorigin="*"></audio>
+                <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track.replace("sounds/", "" ) }}"></audio>
             </div>
             <div class="progress">
                 <div id="progress_track_{{ key }}" class="progress-bar bg-secondary" style="width: 100%">
