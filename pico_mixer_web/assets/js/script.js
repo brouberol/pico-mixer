@@ -5,7 +5,6 @@ function pauseAllPlayingTracks() {
   Object.entries(tracksPlaying).forEach(([key, audioElement]) => {
     audioElement.pause();
     const trackProgressBar = document.getElementById(`progress_track_${key}`);
-    trackProgressBar.classList.remove("bg-success");
     trackProgressBar.classList.add("bg-warning");
   });
 }
@@ -15,27 +14,25 @@ function unpauseAllPlayingTracks() {
     audioElement.play();
     const trackProgressBar = document.getElementById(`progress_track_${key}`);
     trackProgressBar.classList.remove("bg-warning");
-    trackProgressBar.classList.add("bg-success");
   });
 }
 
 function colorizeTracksKbdElements(colors) {
   for (const [i, color] of colors.entries()) {
     const trackKbdElement = document.getElementById(`kbd_${i}`);
-    trackKbdElement.style["background-color"] = `rgb(${color[0]}, ${color[1]}, ${color[2]}`;
+    trackKbdElement.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]}`;
   }
 }
 
-function startTrack(trackKey, trackAudioElement, trackProgressBar) {
+function startTrack(trackKey, trackAudioElement, trackProgressBar, trackKbdElement) {
   tracksPlaying[trackKey] = trackAudioElement;
   trackProgressBar.classList.remove("bg-secondary");
-  trackProgressBar.classList.add("bg-success");
   trackProgressBar.textContent = "100%";
+  trackProgressBar.style.backgroundColor = trackKbdElement.style.backgroundColor;
   trackAudioElement.play();
 }
 
 function stopTrack(trackKey, trackaudioElement, trackProgressBar) {
-  trackProgressBar.classList.remove("bg-success");
   trackProgressBar.classList.add("bg-secondary");
   trackaudioElement.pause();
   trackaudioElement.currentTime = 0;
@@ -79,13 +76,14 @@ ws.addEventListener('message', event => {
 
     const trackProgressBar = document.getElementById(`progress_track_${keyEvent.key}`);
     const audioElement = document.getElementById(`track_${keyEvent.key}`);
+    const kbdElement = document.getElementById(`kbd_${keyEvent.key}`);
     if (audioElement === null) {
       return;
     }
 
     switch (keyEvent.state) {
       case "on":
-        startTrack(keyEvent.key, audioElement, trackProgressBar);
+        startTrack(keyEvent.key, audioElement, trackProgressBar, kbdElement);
         break;
       case "off":
         stopTrack(keyEvent.key, audioElement, trackProgressBar);
