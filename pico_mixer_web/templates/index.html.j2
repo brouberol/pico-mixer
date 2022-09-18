@@ -22,7 +22,7 @@
         {% for key, track in tracks.items() %}
         <div class="mb-3">
             <div class="track mb-2">
-                <span><kbd>{{ key }}</kbd> {{ track.replace("sounds/", "") }}</span>
+                <span><kbd id="kbd_{{ key }}">{{ key }}</kbd> - {{ track.replace("sounds/", "") }}</span>
                 <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track.replace("sounds/", "" ) }}"></audio>
             </div>
             <div class="progress">

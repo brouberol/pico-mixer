@@ -19,6 +19,13 @@ function unpauseAllPlayingTracks() {
   });
 }
 
+function colorizeTracksKbdElements(colors) {
+  for (const [i, color] of colors.entries()) {
+    const trackKbdElement = document.getElementById(`kbd_${i}`);
+    trackKbdElement.style["background-color"] = `rgb(${color[0]}, ${color[1]}, ${color[2]}`;
+  }
+}
+
 function startTrack(trackKey, trackAudioElement, trackProgressBar) {
   tracksPlaying[trackKey] = trackAudioElement;
   trackProgressBar.classList.remove("bg-secondary");
@@ -62,6 +69,8 @@ ws.addEventListener('message', event => {
     usbStatus.textContent = "🔌 🚫";
   } else if (keyEvent.state === "usb_connected") {
     usbStatus.textContent = "🔌 ✅";
+  } else if (keyEvent.state === "init") {
+    colorizeTracksKbdElements(keyEvent.colors);
   } else if (keyEvent.state === "pause") {
     pauseAllPlayingTracks();
   } else if (keyEvent.state === "unpause") {

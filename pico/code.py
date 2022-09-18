@@ -49,6 +49,10 @@ def initialize_keys(keypad):
         key.brightness = DEACTIVATED_KEY_BRIGHTNESS
 
 
+def advertise_keys_colors():
+    print('{"state": "init", "colors": %s}\r\n' % (str(COLORS[:12])))
+
+
 def main():
     start_time = time.monotonic()
     activated_keys = {}
@@ -57,6 +61,7 @@ def main():
     keypad = RGBKeypad()
 
     initialize_keys(keypad)
+    advertise_keys_colors()
 
     while True:
         # This is faster than iterating over all the keys everytime
@@ -139,7 +144,10 @@ def main():
                     state = "pause"
                 paused = not paused
 
-            message = '{"key": "%s", "state": "%s"}\n' % (str(key_index), state)
+            message = '{"key": "%s", "state": "%s"}\n' % (
+                str(key_index),
+                state,
+            )
             print(message)  # That sends the message over the usb port
 
 
