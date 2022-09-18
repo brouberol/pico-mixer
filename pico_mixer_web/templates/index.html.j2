@@ -11,9 +11,12 @@
 
 <body class="p-2">
     <!-- Content -->
-    <h1 class="text-center mb-5">Pico mixer</h1>
+    <h1 class="text-center pb-2">Pico mixer</h1>
 
-    <div id="usb_status" class="position-absolute top-0 right-0"></div>
+    <div class="position-relative pb-5">
+        <div id="usb_status" class="position-absolute top-0 start-50 translate-middle-x"></div>
+    </div>
+
 
     <div class="container">
         {% for key, track in tracks.items() %}

@@ -59,9 +59,9 @@ ws.addEventListener('message', event => {
   const usbStatus = document.getElementById("usb_status");
 
   if (keyEvent.state === "usb_disconnected") {
-    usbStatus.textContent = "🚫";
+    usbStatus.textContent = "🔌 🚫";
   } else if (keyEvent.state === "usb_connected") {
-    usbStatus.textContent = "✅";
+    usbStatus.textContent = "🔌 ✅";
   } else if (keyEvent.state === "pause") {
     pauseAllPlayingTracks();
   } else if (keyEvent.state === "unpause") {
