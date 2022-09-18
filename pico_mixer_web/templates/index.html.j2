@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Unique page title - My Site</title>
+
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <meta name="description" content="Page description">
+    <meta property="og:title" content="Unique page title - My Site">
+    <meta property="og:description" content="Page description">
+    <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+    <meta property="og:image:alt" content="Image description">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://www.mywebsite.com/page">
+    <link rel="canonical" href="https://www.mywebsite.com/page">
+
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/my.webmanifest">
+    <meta name="theme-color" content="#FF00FF">
+</head>
+
+<body>
+    <!-- Content -->
+    <h1>Pico mixer</h1>
+    <div id="audioTracksContainer">
+    <ul>
+    {% for key, track in tracks.items() %}
+        <li class=track>
+            <span>[{{ key }}] {{ track }}</span>
+            <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track.replace("sounds/", "") }}" crossorigin="*"></audio>
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

@@ -8,9 +8,11 @@ readme = "README.md"
 packages = [{include = "pico_mixer"}]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 pygame = "^2.1.2"
 pyserial = "^3.5"
+Flask = "^2.2.2"
+flask-sock = "^0.5.2"
 
 
 [build-system]
