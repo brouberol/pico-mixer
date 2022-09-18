@@ -61,6 +61,7 @@ def main():
     keypad = RGBKeypad()
 
     initialize_keys(keypad)
+    time.sleep(1)
     advertise_keys_colors()
 
     while True:
