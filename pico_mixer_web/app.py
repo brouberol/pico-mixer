@@ -19,6 +19,7 @@ app = Flask(
 )
 sock = Sock(app)
 
+
 def find_usb_device():
     if not (usb_ports := list(list_ports(r"^/dev/cu\.usbmodem.*$"))):
         return
@@ -54,9 +55,9 @@ def stream_key_events(ws):
             else:
                 ws.send(line)
         except serial.serialutil.SerialException:
-           ws.send('{"state": "usb_disconnected"}')
-           connected = False
-           time.sleep(1)
+            ws.send('{"state": "usb_disconnected"}')
+            connected = False
+            time.sleep(1)
 
 
 if __name__ == "__main__":

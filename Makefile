@@ -7,7 +7,7 @@ mixer:  ## Start the sound mixer terminal application
 	@poetry run python pico_mixer/mixer.py
 
 webmixer:  ## Start the web-based sound mixer
-	@cd pico_mixer_web && poetry run python server.py
+	@cd pico_mixer_web && poetry run python app.py
 
 install:  ## Install python dependencies
 	poetry install
