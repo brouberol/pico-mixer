@@ -38,6 +38,7 @@ function stopTrack(trackKey, trackaudioElement, trackProgressBar) {
   trackaudioElement.currentTime = 0;
   trackaudioElement.volume = 1;
   trackProgressBar.style.width = '100%';
+  trackProgressBar.style.backgroundColor = null;
   trackProgressBar.textContent = "";
   delete tracksPlaying[trackKey];
 }
