@@ -1,6 +1,5 @@
 import time
 import json
-import glob
 
 import serial.serialutil
 
@@ -11,7 +10,7 @@ from serial.tools.list_ports import grep as list_ports
 from flask import Flask, render_template
 from flask_sock import Sock
 
-sounds_dir = Path(__file__).parent.parent / "sounds"
+track_config_path = Path(__file__).parent / ".." / "config.json"
 app = Flask(
     "pico-mixer",
     static_url_path="/assets",
@@ -28,9 +27,12 @@ def find_usb_device():
 
 @app.get("/")
 def index():
-    track_files = sorted(glob.glob(f"{sounds_dir}/*"))[:12]
-    tracks = {i: Path(track).name for i, track in enumerate(track_files)}
-    return render_template("index.html.j2", tracks=tracks)
+    with open(track_config_path) as track_config:
+        tracks = {
+            key: track_filename.replace("sounds/", "")
+            for key, track_filename in json.load(track_config).items()
+        }
+        return render_template("index.html.j2", tracks=tracks)
 
 
 @sock.route("/key_events")
