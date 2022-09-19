@@ -1,5 +1,6 @@
 import time
 import math
+import usb_cdc
 
 from pimoroni_rgbkeypad import RGBKeypad
 
@@ -45,7 +46,6 @@ def flatten(value, min_value, max_value):
 
 def send_message(message):
     print(message)
-    print("")
 
 
 def initialize_keys(keypad):
@@ -64,6 +64,9 @@ def main():
     keys_being_pressed = {}
     paused = False
     keypad = RGBKeypad()
+
+    while not usb_cdc.console.connected:
+        time.sleep(0.1)
 
     initialize_keys(keypad)
     advertise_keys_colors()
