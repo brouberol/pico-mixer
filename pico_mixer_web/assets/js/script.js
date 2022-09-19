@@ -26,18 +26,18 @@ function colorizeTracksKbdElements(colors) {
 
 function startTrack(trackKey, trackAudioElement, trackProgressBar, trackKbdElement) {
   tracksPlaying[trackKey] = trackAudioElement;
-  trackProgressBar.classList.remove("bg-secondary");
+  trackProgressBar.classList.remove("non-playing");
   trackProgressBar.textContent = "100%";
   trackProgressBar.style.backgroundColor = trackKbdElement.style.backgroundColor;
   trackAudioElement.play();
 }
 
 function stopTrack(trackKey, trackaudioElement, trackProgressBar) {
-  trackProgressBar.classList.add("bg-secondary");
+  trackProgressBar.classList.add("non-playing");
   trackaudioElement.pause();
   trackaudioElement.currentTime = 0;
   trackaudioElement.volume = 1;
-  trackProgressBar.style["width"] = '100%';
+  trackProgressBar.style.width = '100%';
   trackProgressBar.textContent = "";
   delete tracksPlaying[trackKey];
 }

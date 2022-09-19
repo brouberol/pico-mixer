@@ -7,6 +7,11 @@
     <title>Pico mixer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .non-playing {
+            background-color: rgb(215, 215, 215);
+        }
+    </style>
 </head>
 
 <body class="p-2">
@@ -26,7 +31,7 @@
                 <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track }}"></audio>
             </div>
             <div class="progress">
-                <div id="progress_track_{{ key }}" class="progress-bar bg-secondary" style="width: 100%">
+                <div id="progress_track_{{ key }}" class="progress-bar non-playing" style="width: 100%">
                 </div>
             </div>
         </div>
