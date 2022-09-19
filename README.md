@@ -41,5 +41,6 @@ I also implemented a slightly more complex web application that fixes the previo
 
 As the browser is really good at streaming `<audio>` elements, the app can start immediately without having to load all audio files in memory.
 
-<img width="100%" alt="Screenshot 2022-09-18 at 16 46 18" src="https://user-images.githubusercontent.com/480131/190913335-89fb520a-95c0-4723-bfc3-f301a472d06f.png">
+<img width="100%" alt="Screenshot 2022-09-19 at 12 10 44" src="https://user-images.githubusercontent.com/480131/190995681-d49c6832-e4b7-4912-9ad1-89f1d6b5ce75.png">
+
 
