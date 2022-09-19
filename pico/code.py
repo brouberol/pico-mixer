@@ -43,6 +43,11 @@ def flatten(value, min_value, max_value):
     return value
 
 
+def send_message(message):
+    print(message)
+    print("")
+
+
 def initialize_keys(keypad):
     for i, key in enumerate(keypad.keys):
         key.color = COLORS[i]
@@ -50,7 +55,7 @@ def initialize_keys(keypad):
 
 
 def advertise_keys_colors():
-    print('{"state": "init", "colors": %s}\r\n' % (str(COLORS[:12])))
+    send_message('{"state": "init", "colors": %s}\n' % (str(COLORS[:12])))
 
 
 def main():
@@ -61,7 +66,6 @@ def main():
     keypad = RGBKeypad()
 
     initialize_keys(keypad)
-    time.sleep(1)
     advertise_keys_colors()
 
     while True:
@@ -89,7 +93,7 @@ def main():
                     else "vol_up"
                 )
                 message = '{"key": "%s", "state": "%s"}\n' % (str(key_index), state)
-                print(message)  # That sends the message over the usb port
+                send_message(message)  # That sends the message over the usb port
 
         for key_index, key_pressed in enumerate(keys_pressed):
 
@@ -149,7 +153,7 @@ def main():
                 str(key_index),
                 state,
             )
-            print(message)  # That sends the message over the usb port
+            send_message(message)  # That sends the message over the usb port
 
 
 if __name__ == "__main__":
