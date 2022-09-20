@@ -24,17 +24,20 @@ When a key (or a combination of Volume up/down + track key) is pressed, a JSON-f
 
 The `mixer.py` script currently uses [`pygame.mixer`](https://www.pygame.org/docs/ref/mixer.html) to play the individual track sound files over separate channels. While this works, the startup time can be excruciatingly slow, as each sound file must be fully loaded in memory before the app can start.
 
-The python mixer code could possibly replaced by a web application relying on the following Web APIs:
-- [`USB.getDevices()`](https://developer.mozilla.org/en-US/docs/Web/API/USB/getDevices) to read messages over USB (Chrome/Safari only)
-- [`WebAudio`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) to stream/mix the different sound files.
+This is due to the fact that `pygame` can handle sound 2 different ways:
+- it can stream large sound files as background music via `mixer.music` (which is what we want!), but it can only play one track at a time(<sigh>)
+- it can play multiple sound files on different channels via `pygame.mixer.{Sound,Channel}`, but it has to fully load these sound files into memory. It's usually ok because these sounds files are very small, as it's mostly for quick sound effects.
+ 
+ We're trying to shoehorn both `mixer.Sound` and `mixer.music` together, which has sadly proven to not work, as pygame implement streaming from an audio file directly in the `mixer.music` class, without exposing it as a standalone utility.
+ 
 
 ### Local web application
 
-I also implemented a slightly more complex web application that fixes the previously stated limitations. It is composed of 3 elements:
+One way I found to circumvent the previously stated [limitations](#limitations) was to implement a slightly more complex web application composed of 3 elements:
 
 - the keypad CircuitPython code
-- a webpage in charge of displaying the soundbars and active tracks as well as actually playing the audio tracks 
-- a Flask webserver receiving the messages over USB and serving them to the webpage over a websocket, as well as serving the audio track files to the webpage
+- a webpage in charge of displaying the soundbars and active tracks as well as actually controlling the audio tracks 
+- a Flask webserver receiving the keypad messages over USB and serving them to the webpage over a websocket, as well as serving the static audio files to the webpage
 
 <img width="100%" alt="Screenshot 2022-09-18 at 17 06 35" src="https://user-images.githubusercontent.com/480131/190913995-a27c2385-ea1d-491a-8cc8-84a14d738a49.png">
 
@@ -42,5 +45,3 @@ I also implemented a slightly more complex web application that fixes the previo
 As the browser is really good at streaming `<audio>` elements, the app can start immediately without having to load all audio files in memory.
 
 <img width="100%" alt="Screenshot 2022-09-19 at 12 10 44" src="https://user-images.githubusercontent.com/480131/190995681-d49c6832-e4b7-4912-9ad1-89f1d6b5ce75.png">
-
-
