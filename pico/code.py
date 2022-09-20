@@ -55,6 +55,8 @@ def initialize_keys(keypad):
 
 
 def advertise_keys_colors():
+    while not usb_cdc.console.connected:
+        time.sleep(0.1)
     send_message('{"state": "init", "colors": %s}\n' % (str(COLORS[:12])))
 
 
@@ -64,9 +66,6 @@ def main():
     keys_being_pressed = {}
     paused = False
     keypad = RGBKeypad()
-
-    while not usb_cdc.console.connected:
-        time.sleep(0.1)
 
     initialize_keys(keypad)
     advertise_keys_colors()
