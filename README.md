@@ -45,3 +45,7 @@ One way I found to circumvent the previously stated [limitations](#limitations) 
 As the browser is really good at streaming `<audio>` elements, the app can start immediately without having to load all audio files in memory.
 
 <img width="100%" alt="Screenshot 2022-09-19 at 12 10 44" src="https://user-images.githubusercontent.com/480131/190995681-d49c6832-e4b7-4912-9ad1-89f1d6b5ce75.png">
+
+### Colors
+
+The key colors were generated from [iwanthue](https://medialab.github.io/iwanthue/) and are stored in the `COLORS` list, in `pico/code.py`. Any changes to the colors will be reflected in the web UI, as they are [advertised](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico/code.py#L57-L60) to the web-server at [propagated](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico_mixer_web/assets/js/script.js#L70-L71) to the UI when the keypad starts.
