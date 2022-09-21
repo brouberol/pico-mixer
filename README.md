@@ -44,7 +44,7 @@ One way I found to circumvent the previously stated [limitations](#limitations) 
 
 As the browser is really good at streaming `<audio>` elements, the app can start immediately without having to load all audio files in memory.
 
-<img width="100%" alt="Screenshot 2022-09-19 at 12 10 44" src="https://user-images.githubusercontent.com/480131/190995681-d49c6832-e4b7-4912-9ad1-89f1d6b5ce75.png">
+<img width="100%" alt="Screenshot 2022-09-21 at 20 16 52" src="https://user-images.githubusercontent.com/480131/191580591-5bf2c971-9906-4d5c-998a-dbd7f7b6d99f.png">
 
 ### Colors
 
