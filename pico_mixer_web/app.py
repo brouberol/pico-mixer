@@ -28,10 +28,8 @@ def find_usb_device():
 @app.get("/")
 def index():
     with open(track_config_path) as track_config:
-        tracks = {
-            key: track_filename.replace("sounds/", "")
-            for key, track_filename in json.load(track_config).items()
-        }
+        tracks = json.load(track_config)
+        tracks = sorted(tracks, key=lambda track: track["tags"][0])
         return render_template("index.html.j2", tracks=tracks)
 
 

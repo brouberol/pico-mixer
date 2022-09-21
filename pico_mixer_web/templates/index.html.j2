@@ -24,15 +24,25 @@
 
 
     <div class="container">
-        {% for key, track in tracks.items() %}
+        {% for track in tracks %}
         <div class="mb-3">
             <div class="track mb-2">
-                <span><kbd id="kbd_{{ key }}">{{ key }}</kbd> - {{ track }}</span>
-                <audio id="track_{{ key }}" loop src="/assets/sounds/{{ track }}"></audio>
+                {% set track_index = loop.index0 %}
+
+                <span><kbd class="track_{{ track_index }}">{{ loop.index }}</kbd> - {{ track.title.replace(".ogg", "")
+                    }}</span>
+
+                <div class="d-inline float-end">
+                    {% for tag in track.tags %}
+                    <div class="badge track_{{ track_index }}">{{
+                        tag }}</div>
+                    {% endfor %}
+                </div>
+
+                <audio id="audio_track_{{ track_index }}" loop src="/assets/sounds/{{ track.title }}"></audio>
             </div>
             <div class="progress">
-                <div id="progress_track_{{ key }}" class="progress-bar non-playing" style="width: 100%">
-                </div>
+                <div id="progress_track_{{ track_index }}" class="progress-bar non-playing" style="width: 100%"></div>
             </div>
         </div>
 

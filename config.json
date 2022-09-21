@@ -1,14 +1,61 @@
-{
-    "0": "sounds/Death Curse - An Epic Tomb of Annihilation Soundtrack By Travis Savoie-4u1HNibTeK4.ogg",
-    "1": "sounds/Example.ogg",
-    "2": "sounds/file_example_OOG_5MG.ogg",
-    "3": "sounds/Example_3.ogg",
-    "4": "sounds/Example_4.ogg",
-    "5": "sounds/Example_5.ogg",
-    "6": "sounds/Example_6.ogg",
-    "7": "sounds/Example_7.ogg",
-    "8": "sounds/Example_8.ogg",
-    "9": "sounds/Example_9.ogg",
-    "10": "sounds/Example_10.ogg",
-    "11": "sounds/Example_11.ogg"
-}
+[
+  {
+    "title": "Combat in the Ruins (EXTENDED) - Darkest Dungeon.ogg",
+    "tags": [
+      "combat",
+      "oppressing",
+      "dark",
+      "playlist"
+    ]
+  },
+  {
+    "title": "Cultist Hideout _ Evil Ritual ASMR Ambience _ 1 Hour.ogg",
+    "tags": [
+      "ambiance",
+      "oppressing",
+      "evil",
+      "screams"
+    ]
+  },
+  {
+    "title": "Dark Tomb - _ Cave Sounds _ 45 Minutes.ogg",
+    "tags": [
+      "ambiance",
+      "dungeon",
+      "cave"
+    ]
+  },
+  {
+    "title": "Death Curse - An Epic Tomb of Annihilation Soundtrack.ogg",
+    "tags": [
+      "ambiance",
+      "singing",
+      "drums",
+      "epic",
+      "ethnic"
+    ]
+  },
+  {
+    "title": "Evil Temple _ Dark Ambience _ 1 Hour.ogg",
+    "tags": [
+      "ambiance",
+      "dark",
+      "whispers"
+    ]
+  },
+  {
+    "title": "TO KILL A GOD _ Epic Battle Dark Heroic Music _ Epic Music Mix.ogg",
+    "tags": [
+      "combat",
+      "epic",
+      "playlist"
+    ]
+  },
+  {
+    "title": "2 Hours Powerful Battle Music \u266b  Audiomachine - By the Hand of the Mortal.ogg",
+    "tags": [
+      "combat",
+      "playlist"
+    ]
+  }
+]

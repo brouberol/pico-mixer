@@ -18,17 +18,20 @@ function unpauseAllPlayingTracks() {
 }
 
 function colorizeTracksKbdElements(colors) {
-  for (const [i, color] of colors.entries()) {
-    const trackKbdElement = document.getElementById(`kbd_${i}`);
-    trackKbdElement.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]}`;
+  for (i=0; i<colors.length; i++) {
+    const color = colors[i];
+    const trackColoredElements = document.getElementsByClassName(`track_${i}`);
+    for (const element of trackColoredElements) {
+      element.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]}`;
+    };
   }
 }
 
-function startTrack(trackKey, trackAudioElement, trackProgressBar, trackKbdElement) {
+function startTrack(trackKey, trackAudioElement, trackProgressBar) {
   tracksPlaying[trackKey] = trackAudioElement;
   trackProgressBar.classList.remove("non-playing");
   trackProgressBar.textContent = "100%";
-  trackProgressBar.style.backgroundColor = trackKbdElement.style.backgroundColor;
+  trackProgressBar.style.backgroundColor = document.getElementsByClassName(`track_${trackKey}`)[0].style.backgroundColor;
   trackAudioElement.play();
 }
 
@@ -76,15 +79,15 @@ ws.addEventListener('message', event => {
   } else {
 
     const trackProgressBar = document.getElementById(`progress_track_${keyEvent.key}`);
-    const audioElement = document.getElementById(`track_${keyEvent.key}`);
-    const kbdElement = document.getElementById(`kbd_${keyEvent.key}`);
+    const audioElement = document.getElementById(`audio_track_${keyEvent.key}`);
+
     if (audioElement === null) {
       return;
     }
 
     switch (keyEvent.state) {
       case "on":
-        startTrack(keyEvent.key, audioElement, trackProgressBar, kbdElement);
+        startTrack(keyEvent.key, audioElement, trackProgressBar);
         break;
       case "off":
         stopTrack(keyEvent.key, audioElement, trackProgressBar);
