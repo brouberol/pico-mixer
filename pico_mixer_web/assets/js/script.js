@@ -2,6 +2,10 @@ const ws = new WebSocket("ws://localhost:8000/key_events");
 const tracksPlaying = {};
 const volumeIncrement = 0.05;
 
+function roundTo2Digits(num) {
+  return Math.round(num * 100) / 100;
+}
+
 function pauseAllPlayingTracks() {
   Object.entries(tracksPlaying).forEach(([key, audioElement]) => {
     audioElement.pause();
@@ -48,16 +52,16 @@ function stopTrack(trackKey, trackaudioElement, trackProgressBar) {
 }
 
 function increaseTrackVolume(trackAudioElement, trackProgressBar) {
-  if (trackAudioElement.volume + volumeIncrement <= 1) {
-    trackAudioElement.volume += volumeIncrement;
+  if (roundTo2Digits(trackAudioElement.volume + volumeIncrement <= 1)) {
+    trackAudioElement.volume = roundTo2Digits(trackAudioElement.volume + volumeIncrement);
     trackProgressBar.style["width"] = trackAudioElement.volume * 100 + "%";
     trackProgressBar.textContent = trackProgressBar.style["width"];
   };
 }
 
 function decreaseTrackVolume(trackAudioElement, trackProgressBar) {
-  if (trackAudioElement.volume - volumeIncrement > 0) {
-    trackAudioElement.volume -= volumeIncrement;
+  if (roundTo2Digits(trackAudioElement.volume - volumeIncrement) >= 0) {
+    trackAudioElement.volume = roundTo2Digits(trackAudioElement.volume - volumeIncrement);
     trackProgressBar.style["width"] = trackAudioElement.volume * 100 + "%";
     trackProgressBar.textContent = trackProgressBar.style["width"];
   };
