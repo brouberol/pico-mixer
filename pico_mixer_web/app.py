@@ -29,7 +29,7 @@ def find_usb_device():
 def index():
     with open(track_config_path) as track_config:
         tracks = json.load(track_config)
-        tracks = sorted(tracks, key=lambda track: track["tags"][0])
+        tracks = sorted(tracks, key=lambda track: (track["tags"][0], track["title"]))
         return render_template("index.html.j2", tracks=tracks)
 
 
