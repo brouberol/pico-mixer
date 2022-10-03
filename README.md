@@ -53,10 +53,13 @@ The key colors were generated from [iwanthue](https://medialab.github.io/iwanthu
 
 ### Getting started on macOS and Linux
 
-Open the Terminal app, then run the following commands:
+(This guide assumes that CircuitPython has been installed on the pico. If that is not the case, follow these [instructions](https://learn.adafruit.com/welcome-to-circuitpython) first.)
+
+
+Open a terminal app, then run the following commands:
 
 ```console
-$ cd Downloads
+$ cd ~/Downloads
 $ curl -L https://github.com/brouberol/pico-mixer/archive/refs/heads/main.zip -o main.zip
 $ unzip main.zip
 $ cd pico-mixer-main
