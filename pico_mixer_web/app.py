@@ -40,30 +40,32 @@ def index():
 
 @sock.route("/key_events")
 def stream_key_events(ws):
-    connected = False
+    connected, usb_device = False, None
     while True:
-        if not (usb_device := find_usb_device()):
-            ws.send('{"state": "usb_disconnected"}')
-            time.sleep(1)
-            continue
         if not connected:
-            ws.send('{"state": "usb_connected"}')
-            connected = True
-        try:
-            line = usb_device.readline().strip()
-            line = line.decode("utf-8")
-            if not line.startswith("{"):
-                continue
-            try:
-                json.loads(line)
-            except ValueError:
+            if not (usb_device := find_usb_device()):
+                ws.send('{"state": "usb_disconnected"}')
+                time.sleep(1)
                 continue
             else:
-                ws.send(line)
-        except serial.serialutil.SerialException:
-            ws.send('{"state": "usb_disconnected"}')
-            connected = False
-            time.sleep(1)
+                ws.send('{"state": "usb_connected"}')
+                connected = True
+        elif usb_device is not None:
+            try:
+                line = usb_device.readline().strip()
+                line = line.decode("utf-8")
+                if not line.startswith("{"):
+                    continue
+                try:
+                    json.loads(line)
+                except ValueError:
+                    continue
+                else:
+                    ws.send(line)
+            except serial.serialutil.SerialException:
+                ws.send('{"state": "usb_disconnected"}')
+                connected = False
+                time.sleep(1)
 
 
 if __name__ == "__main__":
