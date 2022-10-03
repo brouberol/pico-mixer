@@ -53,6 +53,8 @@ The key colors were generated from [iwanthue](https://medialab.github.io/iwanthu
 
 ### Getting started on Windows
 
+(This guide assumes that CircuitPython has been installed on the pico. If that is not the case, follow these [instructions](https://learn.adafruit.com/welcome-to-circuitpython) first.)
+
 Before being able to execute this application on your Windows machine, you will need to install the Python programming language. To do this, go to the [Windows download page](https://www.python.org/downloads/windows/), click on the "Latest Python 3 Release" link, and follow the installation instructions.
 
 Now that Python is installed, click on the green `Code` button at the top of this page, and then on `Download zip`. This will download the project as a zip file in your `Downloads` folder. Unzip it by right-clicking on the archive, and click on "Extract here".
@@ -68,13 +70,15 @@ C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>python.exe -m venv .venv
 C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-You only have to run these commands once. Now that all the dependencies have been installed, let's execute the web server!
+You only have to run these commands once. At that point, all the dependencies have been installed.
+
+Now, copy all the sounds files you would like to play (12 max) under the `sounds` folder, and open the `config.json` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
+
+We can now execute the web server!
 
 ```console
 C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>cd pico_mixer_web
 C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>..\.venv\Scripts\python.exe app.py
 ```
-
-Now, copy all the sounds files (12 max) under the `sounds` folder, and open the `config.json` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
 
 Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max).
