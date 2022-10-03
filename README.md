@@ -51,6 +51,37 @@ As the browser is really good at streaming `<audio>` elements, the app can start
 The key colors were generated from [iwanthue](https://medialab.github.io/iwanthue/) and are stored in the `COLORS` list, in `pico/code.py`. Any changes to the colors will be reflected in the web UI, as they are [advertised](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico/code.py#L57-L60) to the web-server at [propagated](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico_mixer_web/assets/js/script.js#L70-L71) to the UI when the keypad starts.
 
 
+## Getting started on macOS and Linux
+
+Open the Terminal app, then run the following commands:
+
+```console
+$ cd Downloads
+$ curl -L https://github.com/brouberol/pico-mixer/archive/refs/heads/main.zip -o main.zip
+$ unzip main.zip
+$ cd pico-mixer-main
+$ python3 -m pip install --user poetry
+$ make install
+```
+
+Plug the keypad, and run:
+
+```console
+$ make pico-sync
+```
+
+The keypad should light up. Unplug it.
+
+Now, copy all the sounds files you would like to play (12 max) under the `sounds` folder, and replace each example `title` attribute under the `config.json` file with the name of a sound file you copied under `sounds`. Feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
+
+Run the following command to start the webserver:
+
+```console
+$ make webmixer
+```
+
+At that point, the webserver will start and the webpage will open. Plug the keypad in. You are now ready.
+
 ### Getting started on Windows
 
 (This guide assumes that CircuitPython has been installed on the pico. If that is not the case, follow these [instructions](https://learn.adafruit.com/welcome-to-circuitpython) first.)
