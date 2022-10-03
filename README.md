@@ -51,7 +51,7 @@ As the browser is really good at streaming `<audio>` elements, the app can start
 The key colors were generated from [iwanthue](https://medialab.github.io/iwanthue/) and are stored in the `COLORS` list, in `pico/code.py`. Any changes to the colors will be reflected in the web UI, as they are [advertised](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico/code.py#L57-L60) to the web-server at [propagated](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico_mixer_web/assets/js/script.js#L70-L71) to the UI when the keypad starts.
 
 
-## Getting started on macOS and Linux
+### Getting started on macOS and Linux
 
 Open the Terminal app, then run the following commands:
 
