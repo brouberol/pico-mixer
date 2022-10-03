@@ -10,6 +10,9 @@ from serial.tools.list_ports import grep as list_ports
 from flask import Flask, render_template
 from flask_sock import Sock
 
+# From https://devicehunt.com/view/type/usb/vendor/239A
+ADAFRUIT_HARDWARE_VENDOR_ID = "239A:80F4"
+
 track_config_path = Path(__file__).parent / ".." / "config.json"
 app = Flask(
     "pico-mixer",
@@ -20,9 +23,11 @@ sock = Sock(app)
 
 
 def find_usb_device():
-    if not (usb_ports := list(list_ports(r"^/dev/cu\.usbmodem.*$"))):
+    if not (usb_ports := list(list_ports(r".*"))):
         return
-    return Serial(usb_ports[0].device)
+    for port in usb_ports:
+        if ADAFRUIT_HARDWARE_VENDOR_ID in port.hwid:
+            return Serial(port.device)
 
 
 @app.get("/")
