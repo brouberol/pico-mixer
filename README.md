@@ -81,4 +81,6 @@ C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>cd pico_mixer_web
 C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>..\.venv\Scripts\python.exe app.py
 ```
 
-Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max).
+Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max), with colors, and you should see the 🔌 ✅ emoji, indicating that the keypad is plugged and recognized.
+
+Press a key, and low and behold, a sound should play. If that is not the case, check out the output of the command you ran in the terminal. If you see some lines with `404 -`, this means that you made a typo in the `title` attribute of that track, in the `config.json` file, and that it does not match the filename of the actual sound file.
