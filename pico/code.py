@@ -30,6 +30,11 @@ ACTIVATED_KEY_BRIGHTNESS = 0.6
 DEACTIVATED_KEY_BRIGHTNESS = 0.2
 BRIGHTNESS_FLUCTUATION_CYCLE_MS = 3000
 
+activated_keys = {}
+keys_being_pressed = {}
+keys_paused = set()
+paused_all = False
+
 
 def fluctuating_brightness(t, cycle):
     brightness = abs(math.cos(math.pi * t / cycle))
@@ -60,11 +65,35 @@ def advertise_keys_colors():
     send_message('{"state": "init", "colors": %s}\n' % (str(COLORS[:12])))
 
 
+def handle_keypress_combination(keys_pressed):
+    if len([pressed for pressed in keys_pressed if pressed]) != 2:
+        return
+
+    associated_keys_index = [
+        i
+        for (i, pressed) in enumerate(keys_pressed)
+        if pressed
+        if i < VOLUME_DOWN_KEY_INDEX
+    ]
+    if len(associated_keys_index) != 1:
+        return
+
+    associated_key_index = associated_keys_index[0]
+    if not keys_being_pressed.get(associated_key_index):
+        keys_being_pressed[associated_key_index] = True
+
+        if keys_pressed[VOLUME_DOWN_KEY_INDEX] is True:
+            state = "vol_down"
+        elif keys_pressed[VOLUME_UP_KEY_INDEX] is True:
+            state = "vol_up"
+
+        message = '{"key": "%s", "state": "%s"}\n' % (str(associated_key_index), state)
+        send_message(message)  # That sends the message over the usb port
+
+
 def main():
+    global paused_all
     start_time = time.monotonic()
-    activated_keys = {}
-    keys_being_pressed = {}
-    paused = False
     keypad = RGBKeypad()
 
     initialize_keys(keypad)
@@ -77,25 +106,7 @@ def main():
         # the keys that are _being_ pressed and only light them up once,
         # to avoid a flicker effect
         keys_pressed = keypad.get_keys_pressed()
-        if len([pressed for pressed in keys_pressed if pressed]) == 2 and (
-            keys_pressed[VOLUME_DOWN_KEY_INDEX] is True
-            or keys_pressed[VOLUME_UP_KEY_INDEX] is True
-        ):
-            key_index = [
-                i
-                for (i, pressed) in enumerate(keys_pressed)
-                if pressed
-                if i < VOLUME_DOWN_KEY_INDEX
-            ][0]
-            if not keys_being_pressed.get(key_index):
-                keys_being_pressed[key_index] = True
-                state = (
-                    "vol_down"
-                    if keys_pressed[VOLUME_DOWN_KEY_INDEX] is True
-                    else "vol_up"
-                )
-                message = '{"key": "%s", "state": "%s"}\n' % (str(key_index), state)
-                send_message(message)  # That sends the message over the usb port
+        handle_keypress_combination(keys_pressed)
 
         for key_index, key_pressed in enumerate(keys_pressed):
 
