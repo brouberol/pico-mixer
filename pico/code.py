@@ -165,11 +165,11 @@ def main():
             if key_index in activated_keys:
                 activated_keys.pop(key_index)
                 key.brightness = DEACTIVATED_KEY_BRIGHTNESS
-                state = "off"
+                state = "stop"
             else:
                 activated_keys[key_index] = True
                 key.brightness = ACTIVATED_KEY_BRIGHTNESS
-                state = "on"
+                state = "start"
 
             if key_index == PAUSE_ALL_KEY_INDEX:
                 if paused_all:

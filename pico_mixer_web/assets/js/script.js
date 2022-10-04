@@ -100,10 +100,10 @@ ws.addEventListener('message', event => {
     }
 
     switch (keyEvent.state) {
-      case "on":
+      case "start":
         startTrack(keyEvent.key, audioElement, trackProgressBar);
         break;
-      case "off":
+      case "stop":
         stopTrack(keyEvent.key, audioElement, trackProgressBar);
         break;
       case "vol_up":
