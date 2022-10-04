@@ -23,9 +23,10 @@ COLORS = [
     [201, 157, 216],
     [220, 110, 223],
 ]
-PAUSE_KEY_INDEX = 15
 VOLUME_DOWN_KEY_INDEX = 12
 VOLUME_UP_KEY_INDEX = 13
+PAUSE_KEY_INDEX = 14
+PAUSE_ALL_KEY_INDEX = 15
 ACTIVATED_KEY_BRIGHTNESS = 0.6
 DEACTIVATED_KEY_BRIGHTNESS = 0.2
 BRIGHTNESS_FLUCTUATION_CYCLE_MS = 3000
@@ -86,6 +87,14 @@ def handle_keypress_combination(keys_pressed):
             state = "vol_down"
         elif keys_pressed[VOLUME_UP_KEY_INDEX] is True:
             state = "vol_up"
+        else:
+            # pause / unpause
+            if associated_key_index not in keys_paused:
+                keys_paused.add(associated_key_index)
+                state = "pause"
+            else:
+                keys_paused.remove(associated_key_index)
+                state = "unpause"
 
         message = '{"key": "%s", "state": "%s"}\n' % (str(associated_key_index), state)
         send_message(message)  # That sends the message over the usb port
@@ -121,7 +130,10 @@ def main():
                 # only make the pause button fluctuate and deactivate all other
                 # activated keys, while keeping their activated state, to make it
                 # easy to restore
-                if PAUSE_KEY_INDEX in activated_keys and key_index != PAUSE_KEY_INDEX:
+                if (
+                    PAUSE_ALL_KEY_INDEX in activated_keys
+                    and key_index != PAUSE_ALL_KEY_INDEX
+                ):
                     key = keypad.keys[key_index]
                     key.brightness = DEACTIVATED_KEY_BRIGHTNESS
                 elif key_index in activated_keys:
@@ -132,7 +144,12 @@ def main():
                     )
                 continue
 
-            if key_index in (VOLUME_DOWN_KEY_INDEX, VOLUME_UP_KEY_INDEX):
+            if key_index in (
+                VOLUME_DOWN_KEY_INDEX,
+                VOLUME_UP_KEY_INDEX,
+                PAUSE_KEY_INDEX,
+                PAUSE_ALL_KEY_INDEX,
+            ):
                 continue
 
             # Don't modify a key that is still being pressed, to avoid making it flicker
@@ -143,7 +160,6 @@ def main():
             # keypad to the computed it is connected to
             key = keypad.keys[key_index]
             keys_being_pressed[key_index] = True
-            # keyboard.send(KEY_INDEX_TO_KEYBOARD_KEY[key_index])
 
             # Toggle the key activation state after it was pressed
             if key_index in activated_keys:
@@ -155,12 +171,12 @@ def main():
                 key.brightness = ACTIVATED_KEY_BRIGHTNESS
                 state = "on"
 
-            if key_index == PAUSE_KEY_INDEX:
-                if paused:
-                    state = "unpause"
+            if key_index == PAUSE_ALL_KEY_INDEX:
+                if paused_all:
+                    state = "unpause_all"
                 else:
-                    state = "pause"
-                paused = not paused
+                    state = "pause_all"
+                paused_all = not paused_all
 
             message = '{"key": "%s", "state": "%s"}\n' % (
                 str(key_index),

@@ -2,23 +2,32 @@ const ws = new WebSocket("ws://localhost:8000/key_events");
 const tracksPlaying = {};
 const volumeIncrement = 0.05;
 
+
 function roundTo2Digits(num) {
   return Math.round(num * 100) / 100;
 }
 
+function pauseTrack(audioElement, trackProgressBar) {
+  audioElement.pause();
+  trackProgressBar.classList.add("paused");
+}
+
+function unPauseTrack(audioElement, trackProgressBar) {
+  audioElement.play();
+  trackProgressBar.classList.remove("paused");
+}
+
 function pauseAllPlayingTracks() {
   Object.entries(tracksPlaying).forEach(([key, audioElement]) => {
-    audioElement.pause();
     const trackProgressBar = document.getElementById(`progress_track_${key}`);
-    trackProgressBar.classList.add("bg-warning");
+    pauseTrack(audioElement, trackProgressBar);
   });
 }
 
 function unpauseAllPlayingTracks() {
   Object.entries(tracksPlaying).forEach(([key, audioElement]) => {
-    audioElement.play();
     const trackProgressBar = document.getElementById(`progress_track_${key}`);
-    trackProgressBar.classList.remove("bg-warning");
+    unPauseTrack(audioElement, trackProgressBar)
   });
 }
 
@@ -77,9 +86,9 @@ ws.addEventListener('message', event => {
     usbStatus.textContent = "🔌 ✅";
   } else if (keyEvent.state === "init") {
     colorizeTracksKbdElements(keyEvent.colors);
-  } else if (keyEvent.state === "pause") {
+  } else if (keyEvent.state === "pause_all") {
     pauseAllPlayingTracks();
-  } else if (keyEvent.state === "unpause") {
+  } else if (keyEvent.state === "unpause_all") {
     unpauseAllPlayingTracks();
   } else {
 
@@ -102,6 +111,12 @@ ws.addEventListener('message', event => {
         break;
       case "vol_down":
         decreaseTrackVolume(audioElement, trackProgressBar);
+        break;
+      case "pause":
+        pauseTrack(audioElement, trackProgressBar);
+        break;
+      case "unpause":
+        unPauseTrack(audioElement, trackProgressBar);
         break;
     }
   }
