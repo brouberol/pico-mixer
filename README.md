@@ -56,7 +56,7 @@ The key colors were generated from [iwanthue](https://medialab.github.io/iwanthu
 (This guide assumes that CircuitPython has been installed on the pico. If that is not the case, follow these [instructions](https://learn.adafruit.com/welcome-to-circuitpython) first.)
 
 
-Open a terminal app, then run the following commands:
+Open a terminal, then run the following commands:
 
 ```console
 $ cd ~/Downloads
