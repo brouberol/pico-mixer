@@ -8,13 +8,17 @@ function roundTo2Digits(num) {
 }
 
 function pauseTrack(audioElement, trackProgressBar) {
-  audioElement.pause();
-  trackProgressBar.classList.add("paused");
+  if (!(audioElement.paused && trackProgressBar.classList.contains("non-playing"))) {
+    audioElement.pause();
+    trackProgressBar.classList.add("paused");
+  }
 }
 
 function unPauseTrack(audioElement, trackProgressBar) {
-  audioElement.play();
-  trackProgressBar.classList.remove("paused");
+  if (audioElement.paused && trackProgressBar.classList.contains("paused")) {
+    audioElement.play();
+    trackProgressBar.classList.remove("paused");
+  }
 }
 
 function pauseAllPlayingTracks() {
@@ -44,6 +48,7 @@ function colorizeTracksKbdElements(colors) {
 function startTrack(trackKey, trackAudioElement, trackProgressBar) {
   tracksPlaying[trackKey] = trackAudioElement;
   trackProgressBar.classList.remove("non-playing");
+  trackProgressBar.classList.remove("paused");
   trackProgressBar.textContent = "100%";
   trackProgressBar.style.backgroundColor = document.getElementsByClassName(`track_${trackKey}`)[0].style.backgroundColor;
   trackAudioElement.play();
@@ -51,6 +56,7 @@ function startTrack(trackKey, trackAudioElement, trackProgressBar) {
 
 function stopTrack(trackKey, trackaudioElement, trackProgressBar) {
   trackProgressBar.classList.add("non-playing");
+  trackProgressBar.classList.remove("paused");
   trackaudioElement.pause();
   trackaudioElement.currentTime = 0;
   trackaudioElement.volume = 1;
