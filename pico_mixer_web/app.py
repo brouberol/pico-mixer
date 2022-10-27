@@ -11,7 +11,7 @@ from flask import Flask, render_template
 from flask_sock import Sock
 
 # From https://devicehunt.com/view/type/usb/vendor/239A
-ADAFRUIT_HARDWARE_VENDOR_ID = "239A:80F4"
+ADAFRUIT_HARDWARE_VENDOR_ID = "239A"
 
 track_config_path = Path(__file__).parent / ".." / "config.json"
 app = Flask(
@@ -26,7 +26,7 @@ def find_usb_device():
     if not (usb_ports := list(list_ports(r".*"))):
         return
     for port in usb_ports:
-        if ADAFRUIT_HARDWARE_VENDOR_ID in port.hwid:
+        if port.hwid.startswith(ADAFRUIT_HARDWARE_VENDOR_ID):
             return Serial(port.device)
 
 
