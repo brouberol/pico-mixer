@@ -145,10 +145,10 @@ def main():
                 continue
 
             if key_index in (
+                # The compose keys
                 VOLUME_DOWN_KEY_INDEX,
                 VOLUME_UP_KEY_INDEX,
                 PAUSE_KEY_INDEX,
-                PAUSE_ALL_KEY_INDEX,
             ):
                 continue
 
