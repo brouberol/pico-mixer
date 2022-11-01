@@ -26,7 +26,7 @@ def find_usb_device():
     if not (usb_ports := list(list_ports(r".*"))):
         return
     for port in usb_ports:
-        if port.hwid.startswith(ADAFRUIT_HARDWARE_VENDOR_ID):
+        if ADAFRUIT_HARDWARE_VENDOR_ID in port.hwid:
             return Serial(port.device)
 
 
