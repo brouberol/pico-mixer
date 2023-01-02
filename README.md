@@ -97,7 +97,7 @@ Open the `pico-mixer-main` folder, and its subfolder, until you can see a `READM
 
 Now, click on the address bar of your file explorer, type `cmd` and then press the Enter key. You should see a terminal, opened in the folder you were in.
 
-Type in the following commands to install all the project dependencies (don't type the `C:\...>` part, it's just there to mimick what you see in the terminal).
+Type in the following commands to install all the project dependencies (don't type the `C:\...>` part, it's just there to mimic what you see in the terminal).
 
 ```console
 C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>python.exe -m venv .venv
@@ -117,4 +117,4 @@ C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>..\.venv\Scripts\python.e
 
 Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max), with colors, and you should see the 🔌 ✅ emoji, indicating that the keypad is plugged and recognized.
 
-Press a key, and low and behold, a sound should play. If that is not the case, check out the output of the command you ran in the terminal. If you see some lines with `404 -`, this means that you made a typo in the `title` attribute of that track, in the `config.json` file, and that it does not match the filename of the actual sound file. Fix the typo, kill the webserver by pressing `Ctrl-C` and restart it.
+Press a key, and lo and behold, a sound should play. If that is not the case, check out the output of the command you ran in the terminal. If you see some lines with `404 -`, this means that you made a typo in the `title` attribute of that track, in the `config.json` file, and that it does not match the filename of the actual sound file. Fix the typo, kill the webserver by pressing `Ctrl-C` and restart it.
