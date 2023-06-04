@@ -50,11 +50,13 @@ class KeyState:
 
 
 def fluctuating_brightness(t, cycle):
+    """Cyclic function representing the brightness fluctuation of a key over time"""
     brightness = abs(math.cos(math.pi * t / cycle))
-    return flatten(value=brightness, min_value=0.05, max_value=0.90)
+    return clamp(value=brightness, min_value=0.05, max_value=0.90)
 
 
-def flatten(value, min_value, max_value):
+def clamp(value, min_value, max_value):
+    """Clamp a value between 2 boundary values"""
     if value < min_value:
         return min_value
     elif value > max_value:
@@ -68,22 +70,26 @@ def send_key_state(key, state):
 
 
 def send_message(message):
+    """Send the arugment message over the USB port"""
     print(message)
 
 
 def initialize_keys(keypad):
+    """Light up each keys with their associated color"""
     for i, key in enumerate(keypad.keys):
         key.color = COLORS[i]
         key.brightness = DEACTIVATED_KEY_BRIGHTNESS
 
 
 def advertise_keys_colors():
+    """Send an init message over USB with the color of each key"""
     while not usb_cdc.console.connected:
         time.sleep(0.1)
     send_message('{"state": "%s", "colors": %s}\n' % (KeyState.init, str(COLORS[:12])))
 
 
 def handle_keypress_combination(keys_pressed):
+    """Handle key combination to allow volume up/down, key pause/unpause, etc"""
     if len([pressed for pressed in keys_pressed if pressed]) != 2:
         return
 
