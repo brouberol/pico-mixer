@@ -37,6 +37,18 @@ keys_paused = set()
 paused_all = False
 
 
+class KeyState:
+    init = "init"
+    pause = "pause"
+    pause_all = "pause_all"
+    start = "start"
+    stop = "stop"
+    unpause = "unpause"
+    unpause_all = "unpause_all"
+    vol_down = "vol_down"
+    vol_up = "vol_up"
+
+
 def fluctuating_brightness(t, cycle):
     brightness = abs(math.cos(math.pi * t / cycle))
     return flatten(value=brightness, min_value=0.05, max_value=0.90)
@@ -63,7 +75,7 @@ def initialize_keys(keypad):
 def advertise_keys_colors():
     while not usb_cdc.console.connected:
         time.sleep(0.1)
-    send_message('{"state": "init", "colors": %s}\n' % (str(COLORS[:12])))
+    send_message('{"state": "%s", "colors": %s}\n' % (KeyState.init, str(COLORS[:12])))
 
 
 def handle_keypress_combination(keys_pressed):
@@ -84,17 +96,17 @@ def handle_keypress_combination(keys_pressed):
         keys_being_pressed[associated_key_index] = True
 
         if keys_pressed[VOLUME_DOWN_KEY_INDEX] is True:
-            state = "vol_down"
+            state = KeyState.vol_down
         elif keys_pressed[VOLUME_UP_KEY_INDEX] is True:
-            state = "vol_up"
+            state = KeyState.vol_up
         else:
             # pause / unpause
             if associated_key_index not in keys_paused:
                 keys_paused.add(associated_key_index)
-                state = "pause"
+                state = KeyState.pause
             else:
                 keys_paused.remove(associated_key_index)
-                state = "unpause"
+                state = KeyState.unpause
 
         message = '{"key": "%s", "state": "%s"}\n' % (str(associated_key_index), state)
         send_message(message)  # That sends the message over the usb port
@@ -165,17 +177,17 @@ def main():
             if key_index in activated_keys:
                 activated_keys.pop(key_index)
                 key.brightness = DEACTIVATED_KEY_BRIGHTNESS
-                state = "stop"
+                state = KeyState.stop
             else:
                 activated_keys[key_index] = True
                 key.brightness = ACTIVATED_KEY_BRIGHTNESS
-                state = "start"
+                state = KeyState.start
 
             if key_index == PAUSE_ALL_KEY_INDEX:
                 if paused_all:
-                    state = "unpause_all"
+                    state = KeyState.unpause_all
                 else:
-                    state = "pause_all"
+                    state = KeyState.pause_all
                 paused_all = not paused_all
 
             message = '{"key": "%s", "state": "%s"}\n' % (
