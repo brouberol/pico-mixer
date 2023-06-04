@@ -112,7 +112,7 @@ We can now execute the web server!
 
 ```console
 C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>cd pico_mixer_web
-C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>..\.venv\Scripts\python.exe app.py
+C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main\pico_mixer_web>..\.venv\Scripts\python.exe app.py
 ```
 
 Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max), with colors, and you should see the 🔌 ✅ emoji, indicating that the keypad is plugged and recognized.
