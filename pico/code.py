@@ -62,6 +62,11 @@ def flatten(value, min_value, max_value):
     return value
 
 
+def send_key_state(key, state):
+    """Send a JSON-encoded message reflecting the state of the given argument key"""
+    send_message('{"key": "%s", "state": "%s"}\n' % (str(key), state))
+
+
 def send_message(message):
     print(message)
 
@@ -108,8 +113,7 @@ def handle_keypress_combination(keys_pressed):
                 keys_paused.remove(associated_key_index)
                 state = KeyState.unpause
 
-        message = '{"key": "%s", "state": "%s"}\n' % (str(associated_key_index), state)
-        send_message(message)  # That sends the message over the usb port
+        send_key_state(key=associated_key_index, state=state)
 
 
 def main():
@@ -190,11 +194,7 @@ def main():
                     state = KeyState.pause_all
                 paused_all = not paused_all
 
-            message = '{"key": "%s", "state": "%s"}\n' % (
-                str(key_index),
-                state,
-            )
-            send_message(message)  # That sends the message over the usb port
+            send_key_state(key=key_index, state=state)
 
 
 if __name__ == "__main__":
