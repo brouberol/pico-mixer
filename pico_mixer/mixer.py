@@ -1,3 +1,8 @@
+"""This code is DEPRECATED and is only left to illustrate why relying in on pygame was a dead-end.
+
+See https://blog.balthazar-rouberol.com/my-diy-dungeons-and-dragons-ambiance-mixer for details.
+
+"""
 import contextlib
 
 with contextlib.redirect_stdout(None):
