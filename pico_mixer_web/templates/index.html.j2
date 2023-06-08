@@ -17,6 +17,24 @@
         .paused {
             background-color: rgb(136, 136, 136) !important;
         }
+
+        details#help {
+            padding-top: 2em;
+        }
+
+        details#help summary {
+            padding-bottom: 1em;
+        }
+
+        details#help li:nth-child(odd) {
+            list-style-type: 'Q. ';
+            font-weight: bold;
+        }
+
+        details#help li:nth-child(even) {
+            list-style-type: "A. ";
+            padding-bottom: 1em;
+        }
     </style>
 </head>
 
@@ -53,7 +71,29 @@
         </div>
 
         {% endfor %}
+
+        <details id=help>
+            <summary>Need help❓</summary>
+            <ul>
+                <li>I have plugged the pico but I'm still seeing 🔌 🚫</b></li>
+                <li>Unplug the pico from your computer and plug it back</li>
+                <li>The volume up/down and pause keys don't seem to be doing anything</li>
+                <li>Press both the volume up/down/pause key <em>and</em> the track key at the same time</li>
+                <li>Nothing happens when I press a track key</li>
+                <li>Check the console for a message ending with <code>404 -</code> when you press the key. If that
+                    happens, you might have a type in the <code>title</code> property in the <code>config.json</code>
+                    config file, causing it to differ from the filename on the disk.
+                </li>
+                <li>I have another question</li>
+                <li>Have a look at the blogpost <a
+                        href="https://blog.balthazar-rouberol.com/my-diy-dungeons-and-dragons-ambiance-mixer#isso-root">comment
+                        section</a>, where it might already be answered! If not, feel free to drop a new comment and
+                    I'll try to get back to you quickly.</li>
+            </ul>
+        </details>
     </div>
+
+
 
 
     <script src="assets/js/script.js"></script>
