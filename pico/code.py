@@ -50,7 +50,11 @@ class KeyState:
 
 
 def fluctuating_brightness(t, cycle):
-    """Cyclic function representing the brightness fluctuation of a key over time"""
+    """Cyclic function representing the brightness fluctuation of a key over time
+
+    See https://s.42l.fr/FsKw74vh
+
+    """
     brightness = abs(math.cos(math.pi * t / cycle))
     return clamp(value=brightness, min_value=0.05, max_value=0.90)
 
