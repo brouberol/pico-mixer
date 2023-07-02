@@ -25,7 +25,7 @@ app = Flask(
 sock = Sock(app)
 
 if not sounds_dir.exists():
-    app.logger.warning(
+    click.echo(
         click.style(
             f"The {sounds_dir} folder does not exist. Creating it on the fly.",
             fg="yellow",
@@ -34,7 +34,7 @@ if not sounds_dir.exists():
     sounds_dir.mkdir()
 
 elif not (sounds_dir.is_dir() or sounds_dir.is_symlink()):
-    app.logger.error(
+    click.echo(
         click.style(
             f"{sounds_dir} should be a directory and not a file. Delete it and restart the app.",
             fg="red",
@@ -42,7 +42,7 @@ elif not (sounds_dir.is_dir() or sounds_dir.is_symlink()):
     )
     sys.exit(1)
 elif not list(sounds_dir.iterdir()):
-    app.logger.warning(
+    click.echo(
         click.style(
             f"{sounds_dir} is empty. No sounds will be played. Put sounds file under it and "
             "update the config.json file to reflect the file names",
