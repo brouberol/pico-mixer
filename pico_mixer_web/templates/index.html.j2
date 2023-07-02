@@ -83,6 +83,18 @@
                     happens, you might have a typo in the <code>title</code> property in the <code>config.json</code>
                     config file, causing it to differ from the filename on the disk.
                 </li>
+                <li>(Windows only) I'm seeing an error containing `SerialException: cannot configure port, something
+                    went wrong`</li>
+                <li>In my experience, I had to click on a popup window appearing in the bottom left of the screen when
+                    plugging the pico, asking to repair the device</li>
+                <li>(Windows-only) I press a key, the associated bar colors up, but I'm not hearing any sound.</li>
+                <li>Open the browser developer console (<code>Ctrl Shift C</code> on Firefox or Edge,
+                    <code>Ctrl Shift J</code> on Chrome) and
+                    go to the <code>Console</code> tab. If you're seeing an error message saying <code>the play method is not allowed
+                    [...] in the current context [...]</code>, you should .. scroll up and down in the page first. This
+                    may sound a bit weird but browser do not like pages to play sound if you haven't interacted with
+                    them beforehand.
+                </li>
                 <li>I have another question</li>
                 <li>Have a look at the blogpost <a
                         href="https://blog.balthazar-rouberol.com/my-diy-dungeons-and-dragons-ambiance-mixer#isso-root">comment
