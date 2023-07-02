@@ -97,25 +97,11 @@ Now that Python is installed, click on the green `Code` button at the top of thi
 
 Open the `pico-mixer-main` folder, and its subfolder, until you can see a `README.md` file. Open the `pico` folder. Plug the keypad to your computer using the USB cable. A file explorer window should open. Copy all the files in the current `pico` folder to the `CIRCUITPY` USB volume. At that point, the keypad should light up. Unplug it. Go back to the parent folder.
 
-Now, click on the address bar of your file explorer, type `cmd` and then press the Enter key. You should see a terminal, opened in the folder you were in.
+Double click on the `win-install` file to install all dependencies.
 
-Type in the following commands to install all the project dependencies (don't type the `C:\...>` part, it's just there to mimic what you see in the terminal).
+Now, copy all the sounds files you would like to play (12 max) under the `pico_mixer_web\assets\sounds` folder, and open the `config` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the file.
 
-```console
-C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>python.exe -m venv .venv
-C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-You only have to run these commands once. At that point, all the dependencies have been installed.
-
-Now, copy all the sounds files you would like to play (12 max) under the `pico_mixer_web\assets\sounds` folder, and open the `config.json` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
-
-We can now execute the web server!
-
-```console
-C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>cd pico_mixer_web
-C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main\pico_mixer_web>..\.venv\Scripts\python.exe app.py
-```
+We can now execute the web server, by double clicking on `win-run`.
 
 Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max), with colors, and you should see the 🔌 ✅ emoji, indicating that the keypad is plugged and recognized.
 
