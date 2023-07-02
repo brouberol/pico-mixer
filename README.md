@@ -101,10 +101,10 @@ Double click on the `win-install` file to install all dependencies.
 
 Now, copy all the sounds files you would like to play (12 max) under the `pico_mixer_web\assets\sounds` folder, and open the `config` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the file.
 
-We can now execute the web server, by double clicking on `win-run`. This will start the app and open your internet browser on `http://localhost:8000`. 
+We can now execute the web server, by double clicking on `win-run`. This will start the app and open your internet browser on `http://localhost:8000`.
 
 Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max), with colors, and you should see the 🔌 ✅ emoji, indicating that the keypad is plugged and recognized.
 
 Press a key, and lo and behold, a sound should play. If that is not the case, check out the output of the command you ran in the terminal. If you see some lines with `404 -`, this means that you made a typo in the `title` attribute of that track, in the `config.json` file, and that it does not match the filename of the actual sound file. Fix the typo, kill the webserver by pressing `Ctrl-C` and restart it. If nothing works, checke the Q/A at the bottom of the webpage.
 
-> **Warning**: if you find instructions unclear or struggle to run through them, please have a look at this [comment](https://blog.balthazar-rouberol.com/my-diy-dungeons-and-dragons-ambiance-mixer#isso-102) first.
+> **Warning**: if you find instructions unclear or struggle to run through them, please have a look at the  **Need help❓** section in the app, and possibly this [comment](https://blog.balthazar-rouberol.com/my-diy-dungeons-and-dragons-ambiance-mixer#isso-102) first.
