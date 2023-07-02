@@ -31,7 +31,7 @@ if not sounds_dir.exists():
             fg="yellow",
         )
     )
-    sounds_dir.mkdir()
+    sounds_dir.mkdir(exist_ok=True)
 
 elif not (sounds_dir.is_dir() or sounds_dir.is_symlink()):
     click.echo(

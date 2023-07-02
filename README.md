@@ -76,7 +76,7 @@ $ make pico-sync
 
 The keypad should light up. Unplug it.
 
-Now, copy all the sounds files you would like to play (12 max) under the `sounds` folder, and replace each example `title` attribute under the `config.json` file with the name of a sound file you copied under `sounds`. Feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
+Now, copy all the sounds files you would like to play (12 max) under the `pico_mixer_web/assets/sounds` folder, and replace each example `title` attribute under the `config.json` file with the name of a sound file you copied under `sounds`. Feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
 
 Run the following command to start the webserver:
 
@@ -108,7 +108,7 @@ C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main>.venv\Scripts\python.exe 
 
 You only have to run these commands once. At that point, all the dependencies have been installed.
 
-Now, copy all the sounds files you would like to play (12 max) under the `sounds` folder, and open the `config.json` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
+Now, copy all the sounds files you would like to play (12 max) under the `pico_mixer_web\assets\sounds` folder, and open the `config.json` file with a text editor, such as Notepad. Replace each example `title` attribute with the name of a sound file you copied under `sounds` and, feel free to add a couple of descriptive tags under the `tags` attribute. Save the `config.json` file.
 
 We can now execute the web server!
 
