@@ -51,6 +51,7 @@ As the browser is really good at streaming `<audio>` elements, the app can start
 The key colors were generated from [iwanthue](https://medialab.github.io/iwanthue/) and are stored in the `COLORS` list, in `pico/code.py`. Any changes to the colors will be reflected in the web UI, as they are [advertised](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico/code.py#L57-L60) to the web-server at [propagated](https://github.com/brouberol/pico-mixer/blob/2c5acb191eb22d45affdfcc4eb21ec853d690a0e/pico_mixer_web/assets/js/script.js#L70-L71) to the UI when the keypad starts.
 
 
+
 ### Getting started on macOS and Linux
 
 (This guide assumes that CircuitPython has been installed on the pico. If that is not the case, follow these [instructions](https://learn.adafruit.com/welcome-to-circuitpython) first.)
@@ -85,6 +86,7 @@ $ make webmixer
 
 At that point, the webserver will start and the webpage will open. Plug the keypad in. You are now ready.
 
+
 ### Getting started on Windows
 
 (This guide assumes that CircuitPython has been installed on the pico. If that is not the case, follow these [instructions](https://learn.adafruit.com/welcome-to-circuitpython) first.)
@@ -118,5 +120,5 @@ C:\Users\you\Downloads\pico-mixer-main\pico-mixer-main\pico_mixer_web>..\.venv\S
 Finally, open your internet browser, and type the following address, then the Enter key: `http://localhost:8000`. Plug the keypad in. At that point, you should see as many bars as you have sound files (12 max), with colors, and you should see the 🔌 ✅ emoji, indicating that the keypad is plugged and recognized.
 
 Press a key, and lo and behold, a sound should play. If that is not the case, check out the output of the command you ran in the terminal. If you see some lines with `404 -`, this means that you made a typo in the `title` attribute of that track, in the `config.json` file, and that it does not match the filename of the actual sound file. Fix the typo, kill the webserver by pressing `Ctrl-C` and restart it.
- 
+
 > **Warning**: if you find instructions unclear or struggle to run through them, please have a look at this [comment](https://blog.balthazar-rouberol.com/my-diy-dungeons-and-dragons-ambiance-mixer#isso-102) first.

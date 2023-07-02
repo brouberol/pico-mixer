@@ -1,7 +1,7 @@
-import time
 import math
-import usb_cdc
+import time
 
+import usb_cdc
 from pimoroni_rgbkeypad import RGBKeypad
 
 # Generated via https://medialab.github.io/iwanthue/
@@ -144,7 +144,6 @@ def main():
         handle_keypress_combination(keys_pressed)
 
         for key_index, key_pressed in enumerate(keys_pressed):
-
             # De-register a key that was being pressed if their state indicates
             # that they are not being pressed.
             if not key_pressed:

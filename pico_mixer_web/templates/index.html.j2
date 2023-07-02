@@ -53,13 +53,12 @@
             <div class="track mb-2">
                 {% set track_index = loop.index0 %}
 
-                <span><kbd class="track_{{ track_index }}">{{ loop.index }}</kbd> - {{ track.title.replace(".ogg", "")
-                    }}</span>
+                <span><kbd class="track_{{ track_index }}">{{ loop.index }}</kbd> - {{ track.title.replace(".ogg",
+                    "")}}</span>
 
                 <div class="d-inline float-end">
                     {% for tag in track.tags %}
-                    <div class="badge track_{{ track_index }}">{{
-                        tag }}</div>
+                    <div class="badge track_{{ track_index }}">{{ tag }}</div>
                     {% endfor %}
                 </div>
 
@@ -92,9 +91,6 @@
             </ul>
         </details>
     </div>
-
-
-
 
     <script src="assets/js/script.js"></script>
 </body>
