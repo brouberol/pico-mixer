@@ -82,6 +82,13 @@ function decreaseTrackVolume(trackAudioElement, trackProgressBar) {
   };
 }
 
+function alertAboutTrackNotFound(trackNode) {
+  warningNode = document.createElement("span");
+  warningNode.className = 'track-warning';
+  warningNode.textContent = "⚠ not found!️";
+  trackNode.appendChild(warningNode);
+}
+
 ws.addEventListener('message', event => {
   const keyEvent = JSON.parse(event.data);
   const usbStatus = document.getElementById("usb_status");
@@ -128,3 +135,20 @@ ws.addEventListener('message', event => {
   }
 
 });
+
+
+async function probeAudioTrack(audioNode) {
+  await fetch(audioNode.src, { "method": "HEAD" }).then((response) => {
+    if (response.status != 200) {
+      alertAboutTrackNotFound(audioNode.parentNode);
+    }
+  })
+}
+
+window.addEventListener('load', function () {
+  audioNodes = document.getElementsByTagName('audio')
+  for (let i = 0; i < audioNodes.length; i++) {
+    audioNode = document.getElementById(`audio_track_${i}`);
+    probeAudioTrack(audioNode);
+  }
+})
