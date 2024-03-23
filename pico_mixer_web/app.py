@@ -1,6 +1,7 @@
 import json
 import sys
 import time
+import os
 from pathlib import Path
 
 import click
@@ -16,7 +17,10 @@ ADAFRUIT_HARDWARE_VENDOR_ID = "239A"
 assets_dir = Path(__file__).parent / "assets"
 sounds_dir = assets_dir / "sounds"
 
-track_config_path = Path(__file__).parent / ".." / "config.json"
+track_config_path = os.environ.get(
+    'PICO_MIXER_CONFIG',
+    Path(__file__).parent / ".." / "config.json"
+)
 app = Flask(
     "pico-mixer",
     static_url_path="/assets",
