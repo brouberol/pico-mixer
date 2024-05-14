@@ -41,6 +41,7 @@ function colorizeTracksKbdElements(colors) {
     const trackColoredElements = document.getElementsByClassName(`track_${i}`);
     for (const element of trackColoredElements) {
       element.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]}`;
+      element.style.color = 'white';
     };
   }
 }
