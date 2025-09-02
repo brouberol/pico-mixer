@@ -64,7 +64,7 @@
                 {% set track_index = loop.index0 %}
 
                 <span><kbd class="track_{{ track_index }}">{{ loop.index }}</kbd> - {{ track.title.replace(".ogg",
-                    "")}}</span>
+                    "").replace(".mp3", "")}}</span>
 
                 <div class="d-inline float-end">
                     {% for tag in track.tags %}
